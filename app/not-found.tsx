@@ -1,3 +1,4 @@
+import Button from "@/components/shared/Button";
 import Link from "next/link";
 
 const NotFound = () => {
@@ -10,11 +11,8 @@ const NotFound = () => {
       <p className="mt-2 text-slate-600 max-w-md">
         Sorry, the page you are looking for doesn’t exist or has been moved.
       </p>
-      <Link
-        href="/"
-        className="mt-6 inline-block rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-      >
-        Go Home
+      <Link href="/" className="mt-6">
+        <Button>Go Home</Button>
       </Link>
     </main>
   );
