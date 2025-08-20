@@ -11,21 +11,18 @@ export default function Hero() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-center py-20 text-center lg:py-32">
-          {/* Headline */}
           <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
             Connect Talent with Opportunity
           </h1>
 
-          {/* Subheadline */}
           <p className="mt-6 max-w-2xl text-lg text-slate-600 sm:text-xl">
             A smart platform where{" "}
-            <span className="font-semibold text-indigo-600">candidates</span>
+            <span className="font-semibold text-indigo-600">candidates </span>
             meet the right{" "}
             <span className="font-semibold text-emerald-500">companies</span> —
             faster, easier, and smarter.
           </p>
 
-          {/* CTA Buttons */}
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link
               href="/register?role=candidate"
