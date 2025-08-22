@@ -1,9 +1,8 @@
 import Link from "next/link";
 
-export default function Hero() {
+const Hero = () => {
   return (
     <section className="relative bg-gradient-to-br from-indigo-50 via-white to-emerald-50">
-      {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 -left-20 h-96 w-96 rounded-full bg-indigo-100 opacity-30 blur-3xl" />
         <div className="absolute -bottom-20 -right-20 h-96 w-96 rounded-full bg-emerald-100 opacity-30 blur-3xl" />
@@ -41,4 +40,6 @@ export default function Hero() {
       </div>
     </section>
   );
-}
+};
+
+export default Hero;

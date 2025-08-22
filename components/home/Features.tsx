@@ -1,20 +1,15 @@
 import { FEATURES } from "@/constants/features.constant";
 import Container from "../Container";
+import SectionTitle from "../shared/SectionTitle";
 
-export default function Features() {
+const Features = () => {
   return (
     <section className="py-10 sm:py-14 lg:py-16">
       <Container>
-        <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Why Choose Talent Hunt?
-          </h2>
-          <p className="mt-4 text-lg text-slate-600">
-            Streamline your hiring journey. Whether you&apos;re a company
-            seeking skilled candidates or a professional exploring new
-            opportunities, we make the process faster and easier.
-          </p>
-        </div>
+        <SectionTitle
+          title="Why Choose Talent Hunt?"
+          subtitle="Streamline your hiring journey. Whether you're a company seeking skilled candidates or a professional exploring new opportunities, we make the process faster and easier."
+        />
 
         <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {FEATURES.map((feature, index) => (
@@ -35,4 +30,6 @@ export default function Features() {
       </Container>
     </section>
   );
-}
+};
+
+export default Features;

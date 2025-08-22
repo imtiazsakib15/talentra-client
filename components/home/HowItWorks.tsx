@@ -1,15 +1,14 @@
 import { STEPS } from "@/constants/howItWorksSteps.constant";
+import SectionTitle from "../shared/SectionTitle";
 
 const HowItWorks = () => {
   return (
     <section className="py-10 sm:py-14 lg:py-16 bg-slate-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-          How It Works
-        </h2>
-        <p className="mt-4 text-lg text-slate-600">
-          Simple steps to connect candidates with companies faster.
-        </p>
+        <SectionTitle
+          title="How It Works"
+          subtitle="Simple steps to connect candidates with companies faster."
+        />
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {STEPS.map((step, idx) => (
