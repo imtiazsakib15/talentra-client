@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-export const homePageMetadata: Metadata = {
+export const defaultMetadata: Metadata = {
   title: "Talentra | Connect Companies & Candidates",
   description:
     "Talentra is a job portal that connects talented professionals with top companies. Find your dream job or the perfect candidate today!",
