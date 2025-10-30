@@ -1,6 +1,11 @@
-import type { TNavLink } from "@/types";
+type TNavLink = {
+  label: string;
+  path: string;
+};
 
 export const NAV_LINKS: TNavLink[] = [
-  { path: "/", page: "Home" },
-  { path: "/about-us", page: "About Us" },
+  { label: "Home", path: "/" },
+  { label: "About", path: "/about" },
+  { label: "Login", path: "/login" },
+  { label: "Register", path: "/register" },
 ];

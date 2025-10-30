@@ -1,10 +1,10 @@
-import NavBar from "@/components/shared/NavBar/NavBar";
+import Navbar from "@/components/navbar";
 import { Outlet } from "react-router";
 
 const MainLayout = () => {
   return (
     <>
-      <NavBar />
+      <Navbar />
       <Outlet />
     </>
   );
