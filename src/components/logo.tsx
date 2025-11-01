@@ -1,11 +1,16 @@
 import logo from "@/assets/talentra-logo.png";
+import { Link } from "react-router";
 
-export default function Logo() {
+const Logo = () => {
   return (
-    <img
-      src={logo}
-      alt="Talentra logo"
-      className="h-8 sm:h-10 object-center"
-    />
-  )
-}
+    <Link to="/">
+      <img
+        src={logo}
+        alt="Talentra logo"
+        className="h-8 sm:h-10 object-center"
+      />
+    </Link>
+  );
+};
+
+export default Logo;
