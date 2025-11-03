@@ -1,20 +1,30 @@
 import { useSearchParams, Link } from "react-router";
-import { useState } from "react";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { Field, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 
-export default function Register() {
+type Inputs = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+const Register = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const role = searchParams.get("role");
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: handle register logic
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data);
   };
+  console.log(errors);
 
   // role selection
   if (role !== "candidate" && role !== "company") {
@@ -48,46 +58,57 @@ export default function Register() {
         <h2 className="mb-6 text-center text-2xl font-bold text-slate-800">
           Create {role === "company" ? "Company" : "Candidate"} Account
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <label className="block text-sm font-medium text-slate-700">
-              Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              required
-              className="mt-1 w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-slate-700">
-              Email
-            </label>
-            <input
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-5"
+          noValidate
+        >
+          <Field>
+            <FieldLabel htmlFor="email">Email</FieldLabel>
+            <Input
+              id="email"
               type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              required
-              className="mt-1 w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Invalid email address",
+                },
+              })}
+              aria-invalid={errors.email ? "true" : "false"}
             />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-slate-700">
-              Password
-            </label>
-            <input
+            {errors.email && (
+              <p className="-mt-2 text-xs text-red-600">
+                {errors.email.message}
+              </p>
+            )}
+          </Field>
+
+          <Field>
+            <FieldLabel htmlFor="password">Password</FieldLabel>
+            <Input
+              id="password"
               type="password"
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-              required
-              className="mt-1 w-full rounded-lg border border-slate-300 px-4 py-2 text-slate-800 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+              })}
+              aria-invalid={errors.password ? "true" : "false"}
             />
-          </div>
+            {errors.password && (
+              <p
+                className="-mt-2 text-xs text-red-600"
+                role="alert"
+                aria-live="polite"
+              >
+                {errors.password.message}
+              </p>
+            )}
+          </Field>
+
           <Button type="submit" className="w-full">
             Create Account
           </Button>
@@ -105,4 +126,6 @@ export default function Register() {
       </div>
     </Container>
   );
-}
+};
+
+export default Register;
