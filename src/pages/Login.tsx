@@ -1,23 +1,12 @@
-import { useSearchParams, Link } from "react-router";
+import { Link } from "react-router";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { useRegisterMutation } from "@/redux/features/auth/authApi";
-import { toast } from "sonner";
-import { USER_ROLE } from "@/constants/userRole.constsnt";
+import type { Inputs } from "./Register";
 
-export type Inputs = {
-  email: string;
-  password: string;
-};
-
-const Register = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [registerUser] = useRegisterMutation();
-  const role = searchParams.get("role");
-
+const Login = () => {
   const {
     register,
     handleSubmit,
@@ -25,64 +14,24 @@ const Register = () => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const toastId = toast.loading("Registering...");
-    try {
-      const user = {
-        email: data.email,
-        password: data.password,
-        role: role as string,
-      };
-      const result = await registerUser(user).unwrap();
-      if (result.success) {
-        toast.success("Registration successful", { id: toastId });
-      }
-    } catch (error: unknown) {
-      toast.error((error as Error).message || "Registration failed", {
-        id: toastId,
-      });
-    }
+    console.log(data);
+    // TODO: Implement login logic
   };
 
-  // role selection
-  if (role !== USER_ROLE.CANDIDATE && role !== USER_ROLE.COMPANY) {
-    return (
-      <div className="bg-slate-50">
-        <Container className="flex min-h-screen flex-col items-center justify-center">
-          <h2 className="mb-8 text-2xl font-bold text-slate-800">
-            Choose Your Role
-          </h2>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <button
-              onClick={() => setSearchParams({ role: USER_ROLE.CANDIDATE })}
-              className="w-48 rounded-2xl bg-white p-6 text-center shadow-md transition hover:scale-105 hover:shadow-lg"
-            >
-              👤{" "}
-              <span className="block mt-2 font-semibold">I’m a Candidate</span>
-            </button>
-            <button
-              onClick={() => setSearchParams({ role: USER_ROLE.COMPANY })}
-              className="w-48 rounded-2xl bg-white p-6 text-center shadow-md transition hover:scale-105 hover:shadow-lg"
-            >
-              🏢 <span className="block mt-2 font-semibold">I’m a Company</span>
-            </button>
-          </div>
-        </Container>
-      </div>
-    );
-  }
-
-  // registration form
   return (
-    <div className="bg-slate-50">
-      <Container className="flex min-h-screen items-center justify-center">
-        <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg">
-          <h2 className="mb-6 text-center text-2xl font-bold text-slate-800">
-            Create{" "}
-            {role === USER_ROLE.COMPANY
-              ? USER_ROLE.COMPANY
-              : USER_ROLE.CANDIDATE}{" "}
-            Account
-          </h2>
+    <div className="bg-linear-to-br from-indigo-50 via-white to-slate-100">
+      <Container className="flex min-h-screen items-center justify-center px-4">
+        <div className="w-full max-w-md rounded-2xl bg-white/80 p-8 shadow-xl backdrop-blur-md">
+          <div className="mb-6 text-center">
+            <h2 className="text-3xl font-bold text-slate-800">
+              Welcome Back 👋
+            </h2>
+            <p className="mt-2 text-sm text-slate-600">
+              Login to continue your journey with{" "}
+              <span className="text-indigo-600 font-semibold">Talentra</span>
+            </p>
+          </div>
+
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="space-y-5"
@@ -141,18 +90,27 @@ const Register = () => {
               )}
             </Field>
 
-            <Button type="submit" className="w-full">
-              Create Account
+            <div className="text-right">
+              <Link
+                to="/forgot-password"
+                className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+              >
+                Forgot password?
+              </Link>
+            </div>
+
+            <Button type="submit" className="w-full text-base">
+              Sign In
             </Button>
           </form>
 
           <p className="mt-6 text-center text-sm text-slate-600">
-            Already have an account?{" "}
+            Don’t have an account?{" "}
             <Link
-              to="/login"
+              to="/register"
               className="font-medium text-indigo-600 hover:text-indigo-500"
             >
-              Login
+              Create one
             </Link>
           </p>
         </div>
@@ -161,4 +119,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
