@@ -5,6 +5,8 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import type { Inputs } from "./Register";
+import { toast } from "sonner";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
 
 const Login = () => {
   const {
@@ -12,10 +14,20 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+  const [loginUser] = useLoginMutation();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
-    // TODO: Implement login logic
+    const toastId = toast.loading("Logging in...");
+    try {
+      const result = await loginUser(data).unwrap();
+      if (result.success) {
+        toast.success("Login successful", { id: toastId });
+      }
+    } catch (error: unknown) {
+      toast.error((error as Error).message || "Login failed", {
+        id: toastId,
+      });
+    }
   };
 
   return (
