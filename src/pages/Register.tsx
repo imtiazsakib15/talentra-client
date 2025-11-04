@@ -4,15 +4,18 @@ import { Button } from "@/components/ui/button";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { useRegisterMutation } from "@/redux/features/auth/authApi";
+import { toast } from "sonner";
+import { USER_ROLE } from "@/constants/userRole.constsnt";
 
 type Inputs = {
-  name: string;
   email: string;
   password: string;
 };
 
 const Register = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [registerUser, { isLoading }] = useRegisterMutation();
   const role = searchParams.get("role");
 
   const {
@@ -21,13 +24,24 @@ const Register = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const toastId = toast.loading("Registering...");
+    const user = {
+      email: data.email,
+      password: data.password,
+      role: role as string,
+    };
+    const result = await registerUser(user).unwrap();
+    if (result.success) {
+      toast.success("Registration successful", { id: toastId });
+    } else {
+      toast.error("Registration failed", { id: toastId });
+      console.log(result);
+    }
   };
-  console.log(errors);
 
   // role selection
-  if (role !== "candidate" && role !== "company") {
+  if (role !== USER_ROLE.CANDIDATE && role !== USER_ROLE.COMPANY) {
     return (
       <Container className="flex min-h-screen flex-col items-center justify-center bg-slate-50">
         <h2 className="mb-8 text-2xl font-bold text-slate-800">
@@ -35,13 +49,13 @@ const Register = () => {
         </h2>
         <div className="flex flex-col gap-4 sm:flex-row">
           <button
-            onClick={() => setSearchParams({ role: "candidate" })}
+            onClick={() => setSearchParams({ role: USER_ROLE.CANDIDATE })}
             className="w-48 rounded-2xl bg-white p-6 text-center shadow-md transition hover:scale-105 hover:shadow-lg"
           >
             👤 <span className="block mt-2 font-semibold">I’m a Candidate</span>
           </button>
           <button
-            onClick={() => setSearchParams({ role: "company" })}
+            onClick={() => setSearchParams({ role: USER_ROLE.COMPANY })}
             className="w-48 rounded-2xl bg-white p-6 text-center shadow-md transition hover:scale-105 hover:shadow-lg"
           >
             🏢 <span className="block mt-2 font-semibold">I’m a Company</span>
@@ -56,7 +70,9 @@ const Register = () => {
     <Container className="flex min-h-screen items-center justify-center bg-slate-50">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg">
         <h2 className="mb-6 text-center text-2xl font-bold text-slate-800">
-          Create {role === "company" ? "Company" : "Candidate"} Account
+          Create{" "}
+          {role === USER_ROLE.COMPANY ? USER_ROLE.COMPANY : USER_ROLE.CANDIDATE}{" "}
+          Account
         </h2>
         <form
           onSubmit={handleSubmit(onSubmit)}

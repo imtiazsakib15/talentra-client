@@ -1,3 +1,4 @@
+import { USER_ROLE } from "@/constants/userRole.constsnt";
 import { Link } from "react-router";
 
 const Hero = () => {
@@ -24,13 +25,13 @@ const Hero = () => {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link
-              to="/register?role=candidate"
+              to={`/register?role=${USER_ROLE.CANDIDATE}`}
               className="rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               Join as Candidate
             </Link>
             <Link
-              to="/register?role=company"
+              to={`/register?role=${USER_ROLE.COMPANY}`}
               className="rounded-2xl bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
             >
               Join as Company
