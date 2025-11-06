@@ -5,6 +5,7 @@ import Register from "@/pages/Register";
 import Login from "@/pages/Login";
 import NotFound from "@/pages/NotFound";
 import ErrorPage from "@/pages/ErrorPage";
+import CompanyProfile from "@/pages/complete-profile/CompanyProfile";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/complete-profile/company",
+    element: <CompanyProfile />,
   },
   {
     path: "*",

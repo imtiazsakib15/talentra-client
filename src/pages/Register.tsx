@@ -1,4 +1,4 @@
-import { useSearchParams, Link } from "react-router";
+import { useSearchParams, Link, useNavigate } from "react-router";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { useForm, type SubmitHandler } from "react-hook-form";
@@ -23,6 +23,7 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const toastId = toast.loading("Registering...");
@@ -35,6 +36,10 @@ const Register = () => {
       const result = await registerUser(user).unwrap();
       if (result.success) {
         toast.success("Registration successful", { id: toastId });
+
+        if (role === USER_ROLE.CANDIDATE)
+          navigate("/complete-profile/candidate");
+        if (role === USER_ROLE.COMPANY) navigate("/complete-profile/company");
       }
     } catch (error: unknown) {
       toast.error((error as Error).message || "Registration failed", {
