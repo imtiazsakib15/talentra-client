@@ -6,6 +6,7 @@ import Login from "@/pages/Login";
 import NotFound from "@/pages/NotFound";
 import ErrorPage from "@/pages/ErrorPage";
 import CompanyProfile from "@/pages/complete-profile/CompanyProfile";
+import CandidateProfile from "@/pages/complete-profile/CandidateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
   {
     path: "/complete-profile/company",
     element: <CompanyProfile />,
+  },
+  {
+    path: "/complete-profile/candidate",
+    element: <CandidateProfile />,
   },
   {
     path: "*",
