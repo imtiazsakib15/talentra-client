@@ -2,11 +2,12 @@ import z from "zod";
 
 const createCompany = z.object({
   companyName: z.string().min(1, "Company name is required"),
-  website: z.string().url("Website must be a valid URL"),
+  website: z.url("Website must be a valid URL"),
   industry: z.string().min(1, "Industry is required"),
   address: z.string().min(1, "Address is required"),
   country: z.string().min(1, "Country is required"),
   description: z.string().min(1, "Description is required"),
+  logo: z.instanceof(File, { message: "Logo must be an image" }),
 });
 
 export const CompanySchema = {
