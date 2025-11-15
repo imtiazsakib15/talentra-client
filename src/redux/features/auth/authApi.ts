@@ -1,9 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { baseApi } from "@/redux/api/baseApi";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     register: builder.mutation<
-      { success: boolean; message: string; data: unknown },
+      {
+        success: boolean;
+        message: string;
+        data: any;
+      },
       { email: string; password: string; role: string }
     >({
       query: (credentials) => ({
@@ -14,7 +19,11 @@ export const authApi = baseApi.injectEndpoints({
     }),
 
     login: builder.mutation<
-      { success: boolean; message: string; data: unknown },
+      {
+        success: boolean;
+        message: string;
+        data: any;
+      },
       { email: string; password: string }
     >({
       query: (credentials) => ({

@@ -1,4 +1,4 @@
-import { USER_ROLE } from "@/constants/userRole.constsnt";
+import { USER_ROLE } from "@/constants/user.constant";
 import { Link } from "react-router";
 
 const Hero = () => {

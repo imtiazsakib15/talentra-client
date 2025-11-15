@@ -6,7 +6,9 @@ import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { toast } from "sonner";
-import { USER_ROLE } from "@/constants/userRole.constsnt";
+import { USER_ROLE } from "@/constants/user.constant";
+import { useAppDispatch } from "@/redux/hooks";
+import { setUser } from "@/redux/features/auth/authSlice";
 
 export type Inputs = {
   email: string;
@@ -16,12 +18,15 @@ export type Inputs = {
 const Register = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [registerUser] = useRegisterMutation();
+  const dispatch = useAppDispatch();
+
   const role = searchParams.get("role");
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<Inputs>();
   const navigate = useNavigate();
 
@@ -34,15 +39,21 @@ const Register = () => {
         role: role as string,
       };
       const result = await registerUser(user).unwrap();
+
       if (result.success) {
+        const user = result.data.user;
+
+        dispatch(setUser({ user, token: result.data.accessToken }));
+
         toast.success("Registration successful", { id: toastId });
+        reset();
 
         if (role === USER_ROLE.CANDIDATE)
           navigate("/complete-profile/candidate");
         if (role === USER_ROLE.COMPANY) navigate("/complete-profile/company");
       }
     } catch (error: unknown) {
-      toast.error((error as Error).message || "Registration failed", {
+      toast.error((error as Error)?.message || "Registration failed", {
         id: toastId,
       });
     }
