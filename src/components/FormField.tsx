@@ -3,7 +3,6 @@ import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import type { UseFormRegister } from "react-hook-form";
 import { Textarea } from "./ui/textarea";
-import ImageUpload from "./ImageUpload";
 
 interface InputFieldProps {
   id: string;
@@ -67,31 +66,6 @@ export const TextAreaField = ({
         rows={3}
         aria-invalid={!!error}
       />
-      {error && <p className="-mt-2 text-xs text-red-600">{error}</p>}
-    </Field>
-  );
-};
-
-interface ImageUploadFieldProps {
-  id: string;
-  label: string;
-  // register: UseFormRegister<any>;
-  error?: string;
-}
-
-export const ImageUploadField = ({
-  id,
-  label,
-  // register,
-  error,
-}: // type = "text",
-ImageUploadFieldProps) => {
-  return (
-    <Field>
-      <FieldLabel htmlFor={id} className="text-slate-700">
-        {label}
-      </FieldLabel>
-      <ImageUpload />
       {error && <p className="-mt-2 text-xs text-red-600">{error}</p>}
     </Field>
   );

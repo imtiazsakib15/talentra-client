@@ -51,6 +51,8 @@ const Register = () => {
         if (role === USER_ROLE.CANDIDATE)
           navigate("/complete-profile/candidate");
         if (role === USER_ROLE.COMPANY) navigate("/complete-profile/company");
+      } else {
+        toast.error("Registration failed", { id: toastId });
       }
     } catch (error: unknown) {
       toast.error((error as Error)?.message || "Registration failed", {
@@ -89,7 +91,7 @@ const Register = () => {
 
   // registration form
   return (
-    <div className="bg-slate-50">
+    <div className="bg-slate-50 py-4">
       <Container className="flex min-h-screen items-center justify-center">
         <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg">
           <h2 className="mb-6 text-center text-2xl font-bold text-slate-800">

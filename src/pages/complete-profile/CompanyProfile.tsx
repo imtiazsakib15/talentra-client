@@ -42,12 +42,13 @@ const CompanyProfile = () => {
       const result = await createCompanyProfile(payload).unwrap();
 
       if (result.success) {
-        dispatch(logout());
         toast.success("Company profile created successfully", { id: toastId });
         reset();
         dispatch(logout());
 
         navigate("/login");
+      } else {
+        toast.error("Failed to create company profile", { id: toastId });
       }
     } catch (error: unknown) {
       toast.error(
@@ -60,7 +61,7 @@ const CompanyProfile = () => {
   };
 
   return (
-    <div className="bg-slate-50 py-2">
+    <div className="bg-slate-50 py-4">
       <Container className="flex min-h-screen items-center justify-center px-4">
         <div className="w-full max-w-2xl rounded-2xl bg-white p-8 shadow-md">
           <h1 className="mb-6 text-center text-2xl font-semibold text-slate-800">
