@@ -33,7 +33,7 @@ export default function CompanyDashboardLayout() {
         {/* Nav Items */}
         <nav className="flex-1 p-4 space-y-2">
           <SideLink
-            to="/dashboard"
+            to="/company/dashboard"
             icon={<Building2 />}
             label="Overview"
             open={open}

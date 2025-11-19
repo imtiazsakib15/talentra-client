@@ -8,6 +8,7 @@ import ErrorPage from "@/pages/ErrorPage";
 import CompanyProfile from "@/pages/complete-profile/CompanyProfile";
 import CandidateProfile from "@/pages/complete-profile/CandidateProfile";
 import CompanyDashboardLayout from "@/layout/CompanyDashboardLayout";
+import CompanyDashboard from "@/pages/company-dashboard/CompanyDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -38,10 +39,15 @@ export const router = createBrowserRouter([
     element: <CandidateProfile />,
   },
   {
-    path: "/dashboard/company",
+    path: "/company",
     element: <CompanyDashboardLayout />,
     errorElement: <ErrorPage />,
-    // children: [],
+    children: [
+      {
+        path: "dashboard",
+        element: <CompanyDashboard />,
+      },
+    ],
   },
   {
     path: "*",
