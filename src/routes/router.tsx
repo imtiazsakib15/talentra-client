@@ -7,6 +7,7 @@ import NotFound from "@/pages/NotFound";
 import ErrorPage from "@/pages/ErrorPage";
 import CompanyProfile from "@/pages/complete-profile/CompanyProfile";
 import CandidateProfile from "@/pages/complete-profile/CandidateProfile";
+import CompanyDashboardLayout from "@/layout/CompanyDashboardLayout";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,12 @@ export const router = createBrowserRouter([
   {
     path: "/complete-profile/candidate",
     element: <CandidateProfile />,
+  },
+  {
+    path: "/dashboard/company",
+    element: <CompanyDashboardLayout />,
+    errorElement: <ErrorPage />,
+    // children: [],
   },
   {
     path: "*",
