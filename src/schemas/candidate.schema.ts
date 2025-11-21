@@ -18,8 +18,8 @@ const createCandidate = z.object({
   dateOfBirth: z.date({ message: "Date of Birth is required" }),
   resume: z.url("Resume must be a valid URL"),
   image: z.instanceof(File, { message: "Image is required" }),
-  isAvailable: z.boolean(),
-  isVisible: z.boolean(),
+  isAvailable: z.boolean().optional().default(true),
+  isVisible: z.boolean().optional().default(true),
 });
 
 export const CandidateSchema = { createCandidate };

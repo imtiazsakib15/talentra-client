@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
 import { Menu, Search, Users, Building2, LogOut } from "lucide-react";
 import { useState } from "react";
-import SideLink from "@/components/dashboard/company-dashboard/SideLink";
+import SideLink from "@/components/company-dashboard/SideLink";
 
 export default function CompanyDashboardLayout() {
   const [open, setOpen] = useState(true);
@@ -39,7 +39,7 @@ export default function CompanyDashboardLayout() {
             open={open}
           />
           <SideLink
-            to="/dashboard/candidates"
+            to="/company/dashboard/search-candidates"
             icon={<Users />}
             label="Find Candidates"
             open={open}

@@ -147,7 +147,7 @@ const CandidateProfile = () => {
                   aria-invalid={!!errors.skills}
                 >
                   <MultiSelectValue
-                    placeholder="Select frameworks..."
+                    placeholder="Select skills..."
                     overflowBehavior="wrap-when-open"
                   />
                 </MultiSelectTrigger>

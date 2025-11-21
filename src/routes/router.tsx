@@ -9,6 +9,7 @@ import CompanyProfile from "@/pages/complete-profile/CompanyProfile";
 import CandidateProfile from "@/pages/complete-profile/CandidateProfile";
 import CompanyDashboardLayout from "@/layout/CompanyDashboardLayout";
 import CompanyDashboard from "@/pages/company-dashboard/CompanyDashboard";
+import CandidateSearch from "@/pages/company-dashboard/SearchCandidate";
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Home />,
       },
     ],
@@ -39,13 +40,17 @@ export const router = createBrowserRouter([
     element: <CandidateProfile />,
   },
   {
-    path: "/company",
+    path: "/company/dashboard",
     element: <CompanyDashboardLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "dashboard",
+        index: true,
         element: <CompanyDashboard />,
+      },
+      {
+        path: "search-candidates",
+        element: <CandidateSearch />,
       },
     ],
   },
