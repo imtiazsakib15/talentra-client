@@ -45,7 +45,7 @@ export default function CandidateSearchPage() {
   }, [page]);
 
   return (
-    <div className="p-6 space-y-8">
+    <div className="space-y-8">
       {/* FILTERS SECTION */}
       <div className="rounded-xl border p-6 bg-white shadow-sm space-y-4">
         <h2 className="text-xl font-semibold text-slate-800">
@@ -137,7 +137,7 @@ export default function CandidateSearchPage() {
         ) : (
           <>
             {/* Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {candidates.map((c) => (
                 <CandidateCard key={c.id} candidate={c} />
               ))}

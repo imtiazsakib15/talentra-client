@@ -18,6 +18,7 @@ export const candidateApi = baseApi.injectEndpoints({
         body: credentials,
       }),
     }),
+
     searchCandidates: builder.query<CandidatesResponse, CandidateSearchParams>({
       query: (params) => {
         const {
@@ -51,8 +52,18 @@ export const candidateApi = baseApi.injectEndpoints({
       },
       keepUnusedDataFor: 30,
     }),
+
+    getCandidateById: builder.query<any, string>({
+      query: (candidateId) => ({
+        url: `/candidates/${candidateId}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useCreateCandidateProfileMutation, useSearchCandidatesQuery } =
-  candidateApi;
+export const {
+  useCreateCandidateProfileMutation,
+  useSearchCandidatesQuery,
+  useGetCandidateByIdQuery,
+} = candidateApi;

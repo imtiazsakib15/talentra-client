@@ -12,6 +12,7 @@ export type CandidateSkillNested = {
 export type TCandidate = {
   id: string;
   userId: string;
+  designation: string;
   fullName: string;
   image: string;
   experience: number;

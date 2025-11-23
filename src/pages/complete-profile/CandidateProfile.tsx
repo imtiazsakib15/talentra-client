@@ -47,6 +47,7 @@ const CandidateProfile = () => {
     resolver: zodResolver(CandidateSchema.createCandidate),
     defaultValues: {
       fullName: "",
+      designation: "",
       skills: skills,
       phone: "",
       address: "",
@@ -116,6 +117,14 @@ const CandidateProfile = () => {
               placeholder="Enter your full name"
               register={register}
               error={errors.fullName?.message}
+            />
+
+            <InputField
+              id="designation"
+              label="Designation"
+              placeholder="Enter your designation"
+              register={register}
+              error={errors.designation?.message}
             />
 
             <InputField

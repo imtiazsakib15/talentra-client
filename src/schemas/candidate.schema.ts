@@ -2,6 +2,7 @@ import z from "zod";
 
 const createCandidate = z.object({
   fullName: z.string().min(1, "Full name is required"),
+  designation: z.string().min(1, "Designation is required"),
   experience: z.coerce
     .number()
     .int("Experience must be an integer")
