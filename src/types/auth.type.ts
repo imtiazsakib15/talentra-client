@@ -6,6 +6,8 @@ export type TAuthState = {
     email: string;
     role: typeof USER_ROLE;
     status: typeof USER_STATUS;
+    candidateId?: string;
+    companyId?: string;
   } | null;
   token: string | null;
 };
