@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,8 +20,8 @@ export function SendInterestModal({ candidateId }: { candidateId: string }) {
   const user = useAppSelector(selectCurrentUser);
   const [message, setMessage] = useState("");
 
-  const [sendInterest, { isLoading }] = useSendInterestMutation();
-
+  const [sendInterest, { isLoading, error }] = useSendInterestMutation();
+  console.log(error);
   const handleSend = async () => {
     if (message.trim().length < 10) {
       toast.error("Message must be at least 10 characters.");
@@ -33,17 +34,17 @@ export function SendInterestModal({ candidateId }: { candidateId: string }) {
         companyId: user!.companyId!,
         message,
       }).unwrap();
-
+      console.log(result);
       if (result.success) {
         toast.success("Interest sent successfully!");
         setMessage("");
       } else {
         toast.error("Failed to send interest. Please try again.");
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
       toast.error(
-        (error as Error)?.message ||
+        error?.data?.message ||
+          error?.message ||
           "Failed to send interest. Please try again."
       );
     }

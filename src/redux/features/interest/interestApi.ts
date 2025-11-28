@@ -17,7 +17,15 @@ export const interestApi = baseApi.injectEndpoints({
         body: credentials,
       }),
     }),
+
+    getSentInterests: builder.query({
+      query: () => ({
+        url: "/interests/sent",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useSendInterestMutation } = interestApi;
+export const { useSendInterestMutation, useGetSentInterestsQuery } =
+  interestApi;
