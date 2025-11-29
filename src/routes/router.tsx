@@ -12,6 +12,7 @@ import CompanyDashboard from "@/pages/company-dashboard/CompanyDashboard";
 import CandidateSearch from "@/pages/company-dashboard/SearchCandidate";
 import CandidateDetails from "@/pages/company-dashboard/CandidateDetails";
 import SentInterests from "@/pages/company-dashboard/SentInterests";
+import CandidateDashboardLayout from "@/layout/CandidateDashboardLayout";
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +65,18 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/candidate/dashboard",
+    element: <CandidateDashboardLayout />,
+    children: [
+      // { index: true, element: <CandidateDashboard /> },
+      // { path: "profile", element: <CandidateProfile /> },
+      // { path: "interests/received", element: <CandidateInterests /> },
+      // { path: "interviews", element: <CandidateInterviews /> },
+      // { path: "settings", element: <CandidateSettings /> },
+    ],
+  },
+
   {
     path: "*",
     element: <NotFound />,
