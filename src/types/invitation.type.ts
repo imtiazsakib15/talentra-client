@@ -1,4 +1,4 @@
-export type TInterest = {
+export type TInvitation = {
   candidate: {
     id: string;
     fullName: string;

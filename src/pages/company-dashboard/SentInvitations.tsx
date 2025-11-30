@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGetSentInterestsQuery } from "@/redux/features/interest/interestApi";
+import { useGetSentInvitationsQuery } from "@/redux/features/invitation/invitationApi";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -20,10 +20,10 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import type { TInterest } from "@/types";
+import type { TInvitation } from "@/types";
 
-const SentInterests = () => {
-  const { data, isLoading, error } = useGetSentInterestsQuery(undefined);
+const SentInvitations = () => {
+  const { data, isLoading, error } = useGetSentInvitationsQuery(undefined);
   const [selectedMessage, setSelectedMessage] = useState("");
   const [open, setOpen] = useState(false);
   const [statusFilter, setStatusFilter] = useState("ALL");
@@ -39,17 +39,17 @@ const SentInterests = () => {
   if (error) {
     return (
       <p className="text-center text-red-600 font-medium mt-10">
-        Failed to load sent interests.
+        Failed to load sent invitations.
       </p>
     );
   }
 
-  const interests: TInterest[] = data?.data || [];
+  const invitations: TInvitation[] = data?.data || [];
 
-  const filteredInterests =
+  const filteredInvitations =
     statusFilter === "ALL"
-      ? interests
-      : interests.filter((item) => item.status === statusFilter);
+      ? invitations
+      : invitations.filter((item) => item.status === statusFilter);
 
   const statusColors: Record<string, string> = {
     PENDING: "bg-indigo-600",
@@ -62,7 +62,7 @@ const SentInterests = () => {
       <Card className="shadow-md rounded-2xl border border-slate-200">
         <CardContent className="p-6">
           <h1 className="text-2xl font-semibold text-slate-800 mb-5">
-            Sent Interests
+            Sent Invitations
           </h1>
 
           <Tabs defaultValue="ALL" onValueChange={setStatusFilter}>
@@ -74,9 +74,9 @@ const SentInterests = () => {
             </TabsList>
 
             <TabsContent value={statusFilter}>
-              {filteredInterests.length === 0 ? (
+              {filteredInvitations.length === 0 ? (
                 <p className="text-center text-slate-500">
-                  No interests found for this status.
+                  No invitations found for this status.
                 </p>
               ) : (
                 <div className="overflow-x-auto">
@@ -92,7 +92,7 @@ const SentInterests = () => {
                     </TableHeader>
 
                     <TableBody>
-                      {filteredInterests.map((item) => (
+                      {filteredInvitations.map((item) => (
                         <TableRow key={item.id}>
                           <TableCell>
                             <div className="flex items-center gap-3">
@@ -180,4 +180,4 @@ const SentInterests = () => {
   );
 };
 
-export default SentInterests;
+export default SentInvitations;

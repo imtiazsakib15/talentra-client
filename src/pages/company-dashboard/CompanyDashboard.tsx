@@ -11,7 +11,7 @@ export default function CompanyDashboard() {
       <div>
         <h1 className="text-3xl font-bold text-slate-900">Welcome back 👋</h1>
         <p className="text-slate-600">
-          Manage your interests, explore candidates, and schedule interviews.
+          Manage your invitations, explore candidates, and schedule interviews.
         </p>
       </div>
 
@@ -33,7 +33,7 @@ export default function CompanyDashboard() {
         <Card className="border border-slate-200 shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm text-slate-600">
-              Interests Sent
+              Invitations Sent
             </CardTitle>
             <Send className="h-5 w-5 text-emerald-500" />
           </CardHeader>
@@ -101,10 +101,9 @@ export default function CompanyDashboard() {
           </CardContent>
         </Card>
 
-        {/* RECENT INTERESTS */}
         <Card className="border border-slate-200 shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle>Recent Interests Sent</CardTitle>
+            <CardTitle>Recent Invitations Sent</CardTitle>
             <Button
               variant="ghost"
               className="text-indigo-600 hover:text-indigo-700"

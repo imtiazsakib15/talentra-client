@@ -16,7 +16,7 @@ export const STEPS = [
   {
     title: "Connect & Schedule",
     description:
-      "Send interests, chat, and schedule interviews directly from the platform.",
+      "Send invitations, chat, and schedule interviews directly from the platform.",
     icon: <MessageSquare className="h-10 w-10 text-indigo-600" />,
   },
 ];

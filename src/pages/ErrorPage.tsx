@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Button } from "@/components/ui/button";
 
 export default function ErrorPage() {
@@ -14,7 +14,9 @@ export default function ErrorPage() {
         We’re working to fix the problem. Please try again later or return to
         the homepage.
       </p>
-      <Button onClick={() => navigate("/")}>Go Back Home</Button>
+      <Button asChild onClick={() => navigate("/")}>
+        <Link to="/">Go Back Home</Link>
+      </Button>
     </div>
   );
 }

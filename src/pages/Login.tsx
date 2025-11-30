@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { useForm, type SubmitHandler } from "react-hook-form";
@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import type { Inputs } from "./Register";
 import { toast } from "sonner";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
+import { useAppDispatch } from "@/redux/hooks";
+import { setUser } from "@/redux/features/auth/authSlice";
 
 const Login = () => {
   const {
@@ -15,6 +17,8 @@ const Login = () => {
     formState: { errors },
   } = useForm<Inputs>();
   const [loginUser] = useLoginMutation();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const toastId = toast.loading("Logging in...");
@@ -22,6 +26,14 @@ const Login = () => {
       const result = await loginUser(data).unwrap();
       if (result.success) {
         toast.success("Login successful", { id: toastId });
+        dispatch(
+          setUser({ user: result.data.user, token: result.data.accessToken })
+        );
+        const role = result.data?.user?.role;
+        if (role === "CANDIDATE") navigate("/candidate/dashboard");
+        if (role === "COMPANY") navigate("/company/dashboard");
+      } else {
+        toast.error("Login failed", { id: toastId });
       }
     } catch (error: unknown) {
       toast.error((error as Error).message || "Login failed", {
@@ -31,7 +43,7 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-linear-to-br from-indigo-50 via-white to-slate-100">
+    <div className="bg-linear-to-br from-indigo-50 via-white to-slate-100 py-4">
       <Container className="flex min-h-screen items-center justify-center px-4">
         <div className="w-full max-w-md rounded-2xl bg-white/80 p-8 shadow-xl backdrop-blur-md">
           <div className="mb-6 text-center">

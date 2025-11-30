@@ -45,9 +45,9 @@ export default function CompanyDashboardLayout() {
             open={open}
           />
           <SideLink
-            to="/company/dashboard/sent-interests"
+            to="/company/dashboard/sent-invitations"
             icon={<Send />}
-            label="Sent Interests"
+            label="Sent Invitations"
             open={open}
           />
         </nav>

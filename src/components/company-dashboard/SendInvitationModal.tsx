@@ -13,14 +13,14 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useAppSelector } from "@/redux/hooks";
 import { selectCurrentUser } from "@/redux/features/auth/authSlice";
-import { useSendInterestMutation } from "@/redux/features/interest/interestApi";
+import { useSendInvitationMutation } from "@/redux/features/invitation/invitationApi";
 import { toast } from "sonner";
 
-export function SendInterestModal({ candidateId }: { candidateId: string }) {
+export function SendInvitationModal({ candidateId }: { candidateId: string }) {
   const user = useAppSelector(selectCurrentUser);
   const [message, setMessage] = useState("");
 
-  const [sendInterest, { isLoading, error }] = useSendInterestMutation();
+  const [sendInvitation, { isLoading, error }] = useSendInvitationMutation();
   console.log(error);
   const handleSend = async () => {
     if (message.trim().length < 10) {
@@ -29,23 +29,23 @@ export function SendInterestModal({ candidateId }: { candidateId: string }) {
     }
 
     try {
-      const result = await sendInterest({
+      const result = await sendInvitation({
         candidateId,
         companyId: user!.companyId!,
         message,
       }).unwrap();
       console.log(result);
       if (result.success) {
-        toast.success("Interest sent successfully!");
+        toast.success("Invitation sent successfully!");
         setMessage("");
       } else {
-        toast.error("Failed to send interest. Please try again.");
+        toast.error("Failed to send invitation. Please try again.");
       }
     } catch (error: any) {
       toast.error(
         error?.data?.message ||
           error?.message ||
-          "Failed to send interest. Please try again."
+          "Failed to send invitation. Please try again."
       );
     }
   };
@@ -54,13 +54,13 @@ export function SendInterestModal({ candidateId }: { candidateId: string }) {
     <Dialog>
       <DialogTrigger asChild>
         <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white">
-          Send Interest
+          Send Invitation
         </Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Send Interest</DialogTitle>
+          <DialogTitle>Send Invitation</DialogTitle>
         </DialogHeader>
 
         <div className="flex flex-col gap-3">

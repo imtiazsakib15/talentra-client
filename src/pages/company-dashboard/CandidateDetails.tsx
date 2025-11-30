@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useGetCandidateByIdQuery } from "@/redux/features/candidate/candidateApi";
 import type { TCandidate } from "@/types";
-import { SendInterestModal } from "@/components/company-dashboard/SendInterestModal";
+import { SendInvitationModal } from "@/components/company-dashboard/SendInvitationModal";
 import CandidateDetailsSkeleton from "@/components/company-dashboard/CandidateDetailsSkeleton";
 
 const CandidateDetails = () => {
@@ -103,9 +103,9 @@ const CandidateDetails = () => {
 
           <Separator />
 
-          {/* Send Interest */}
+          {/* Send Invitation */}
           <div className="pt-2">
-            <SendInterestModal candidateId={candidate.id} />
+            <SendInvitationModal candidateId={candidate.id} />
           </div>
         </CardContent>
       </Card>

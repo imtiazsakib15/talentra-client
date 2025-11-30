@@ -11,8 +11,9 @@ import CompanyDashboardLayout from "@/layout/CompanyDashboardLayout";
 import CompanyDashboard from "@/pages/company-dashboard/CompanyDashboard";
 import CandidateSearch from "@/pages/company-dashboard/SearchCandidate";
 import CandidateDetails from "@/pages/company-dashboard/CandidateDetails";
-import SentInterests from "@/pages/company-dashboard/SentInterests";
+import SentInvitations from "@/pages/company-dashboard/SentInvitations";
 import CandidateDashboardLayout from "@/layout/CandidateDashboardLayout";
+import ReceivedInvitations from "@/components/candidate-dashboard/ReceivedInvitations";
 
 export const router = createBrowserRouter([
   {
@@ -60,8 +61,8 @@ export const router = createBrowserRouter([
         element: <CandidateDetails />,
       },
       {
-        path: "sent-interests",
-        element: <SentInterests />,
+        path: "sent-invitations",
+        element: <SentInvitations />,
       },
     ],
   },
@@ -71,7 +72,7 @@ export const router = createBrowserRouter([
     children: [
       // { index: true, element: <CandidateDashboard /> },
       // { path: "profile", element: <CandidateProfile /> },
-      // { path: "interests/received", element: <CandidateInterests /> },
+      { path: "invitations/received", element: <ReceivedInvitations /> },
       // { path: "interviews", element: <CandidateInterviews /> },
       // { path: "settings", element: <CandidateSettings /> },
     ],

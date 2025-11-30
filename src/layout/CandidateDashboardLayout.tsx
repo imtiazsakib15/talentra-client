@@ -1,7 +1,15 @@
 import { Outlet } from "react-router";
 import { cn } from "@/lib/utils";
-import { LayoutDashboard, User, Mail, Calendar, Settings } from "lucide-react";
+import {
+  LayoutDashboard,
+  User,
+  Mail,
+  Calendar,
+  Settings,
+  Menu,
+} from "lucide-react";
 import { NavLink } from "react-router";
+import { useState } from "react";
 
 const sidebarLinks = [
   {
@@ -11,8 +19,8 @@ const sidebarLinks = [
   },
   { to: "/candidate/profile", label: "My Profile", icon: <User size={18} /> },
   {
-    to: "/candidate/interests/received",
-    label: "Interests",
+    to: "/candidate/invitations/received",
+    label: "Invitations",
     icon: <Mail size={18} />,
   },
   {
@@ -28,15 +36,32 @@ const sidebarLinks = [
 ];
 
 export default function CandidateDashboardLayout() {
-  return (
-    <div className="flex min-h-screen bg-slate-50">
-      {/* Sidebar */}
-      <aside className="w-64 bg-white border-r shadow-sm">
-        <div className="p-6 text-xl font-bold text-indigo-600 tracking-wide">
-          Candidate Panel
-        </div>
+  const [open, setOpen] = useState(true);
 
-        <nav className="px-4 space-y-1">
+  return (
+    <div className="flex min-h-screen bg-slate-50 text-slate-900">
+      {/* Sidebar */}
+      <aside
+        className={`${
+          open ? "w-64" : "w-20"
+        } transition-all duration-300 bg-white shadow-xl border-r border-slate-200 flex flex-col`}
+      >
+        <div className="flex items-center justify-between p-4 border-b border-slate-200">
+          <h1
+            className={`text-xl font-semibold text-indigo-600 transition-all duration-300 ${
+              !open && "opacity-0 w-0"
+            }`}
+          >
+            Candidate Panel
+          </h1>
+          <button
+            onClick={() => setOpen(!open)}
+            className="p-2 rounded-lg hover:bg-slate-100"
+          >
+            <Menu className="w-5 h-5 text-slate-700" />
+          </button>
+        </div>
+        <nav className="flex-1 p-4 space-y-2">
           {sidebarLinks.map((item) => (
             <NavLink
               key={item.to}
