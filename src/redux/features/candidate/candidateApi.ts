@@ -59,6 +59,20 @@ export const candidateApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+
+    getMyProfile: builder.query<
+      {
+        success: boolean;
+        message: string;
+        data: any;
+      },
+      void
+    >({
+      query: () => ({
+        url: `/candidates/me`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -66,4 +80,5 @@ export const {
   useCreateCandidateProfileMutation,
   useSearchCandidatesQuery,
   useGetCandidateByIdQuery,
+  useGetMyProfileQuery,
 } = candidateApi;

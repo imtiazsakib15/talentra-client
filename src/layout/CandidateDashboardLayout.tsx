@@ -19,7 +19,7 @@ const sidebarLinks = [
   },
   { to: "/candidate/profile", label: "My Profile", icon: <User size={18} /> },
   {
-    to: "/candidate/invitations/received",
+    to: "/candidate/received-invitations",
     label: "Invitations",
     icon: <Mail size={18} />,
   },

@@ -39,13 +39,13 @@ export default function CompanyDashboardLayout() {
             open={open}
           />
           <SideLink
-            to="/company/dashboard/search-candidates"
+            to="/company/search-candidates"
             icon={<Users />}
             label="Find Candidates"
             open={open}
           />
           <SideLink
-            to="/company/dashboard/sent-invitations"
+            to="/company/sent-invitations"
             icon={<Send />}
             label="Sent Invitations"
             open={open}
