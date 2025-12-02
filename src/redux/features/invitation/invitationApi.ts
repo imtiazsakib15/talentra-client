@@ -31,6 +31,22 @@ export const invitationApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+
+    acceptInvitation: builder.mutation({
+      query: (invitationId) => ({
+        url: `/invitations/${invitationId}/accept`,
+        method: "PUT",
+        body: { invitationId },
+      }),
+    }),
+
+    declineInvitation: builder.mutation({
+      query: (invitationId) => ({
+        url: `/invitations/${invitationId}/decline`,
+        method: "PUT",
+        body: { invitationId },
+      }),
+    }),
   }),
 });
 
@@ -38,4 +54,6 @@ export const {
   useSendInvitationMutation,
   useGetSentInvitationsQuery,
   useGetReceivedInvitationsQuery,
+  useAcceptInvitationMutation,
+  useDeclineInvitationMutation,
 } = invitationApi;

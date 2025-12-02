@@ -13,8 +13,8 @@ import CandidateSearch from "@/pages/company-dashboard/SearchCandidate";
 import CandidateDetails from "@/pages/company-dashboard/CandidateDetails";
 import SentInvitations from "@/pages/company-dashboard/SentInvitations";
 import CandidateDashboardLayout from "@/layout/CandidateDashboardLayout";
-import ReceivedInvitations from "@/components/candidate-dashboard/ReceivedInvitations";
 import MyProfile from "@/pages/candidate-dashboard/MyProfile";
+import ReceivedInvitations from "@/pages/candidate-dashboard/ReceivedInvitations";
 
 export const router = createBrowserRouter([
   {
