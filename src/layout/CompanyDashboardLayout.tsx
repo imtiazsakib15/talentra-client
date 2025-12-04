@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import { Menu, Users, Building2, LogOut, Send } from "lucide-react";
+import { Menu, Users, LogOut, Send, User } from "lucide-react";
 import { useState } from "react";
 import SideLink from "@/components/company-dashboard/SideLink";
 
@@ -32,10 +32,16 @@ export default function CompanyDashboardLayout() {
 
         {/* Nav Items */}
         <nav className="flex-1 p-4 space-y-2">
-          <SideLink
+          {/* <SideLink
             to="/company/dashboard"
             icon={<Building2 />}
             label="Overview"
+            open={open}
+          /> */}
+          <SideLink
+            to="/company/profile"
+            icon={<User />}
+            label="Company Profile"
             open={open}
           />
           <SideLink

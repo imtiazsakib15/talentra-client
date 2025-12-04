@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useSearchParams, Link, useNavigate } from "react-router";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
@@ -54,10 +55,13 @@ const Register = () => {
       } else {
         toast.error("Registration failed", { id: toastId });
       }
-    } catch (error: unknown) {
-      toast.error((error as Error)?.message || "Registration failed", {
-        id: toastId,
-      });
+    } catch (error: any) {
+      toast.error(
+        error?.data?.message || error?.message || "Registration failed",
+        {
+          id: toastId,
+        }
+      );
     }
   };
 

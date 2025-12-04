@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link, useNavigate } from "react-router";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
@@ -30,13 +31,13 @@ const Login = () => {
           setUser({ user: result.data.user, token: result.data.accessToken })
         );
         const role = result.data?.user?.role;
-        if (role === "CANDIDATE") navigate("/candidate/dashboard");
-        if (role === "COMPANY") navigate("/company/dashboard");
+        if (role === "CANDIDATE") navigate("/candidate/profile");
+        if (role === "COMPANY") navigate("/company/profile");
       } else {
         toast.error("Login failed", { id: toastId });
       }
-    } catch (error: unknown) {
-      toast.error((error as Error).message || "Login failed", {
+    } catch (error: any) {
+      toast.error(error?.data?.message || error?.message || "Login failed", {
         id: toastId,
       });
     }

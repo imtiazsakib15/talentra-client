@@ -1,22 +1,15 @@
 import { Outlet } from "react-router";
 import { cn } from "@/lib/utils";
-import {
-  LayoutDashboard,
-  User,
-  Mail,
-  Calendar,
-  Settings,
-  Menu,
-} from "lucide-react";
+import { LayoutDashboard, User, Mail, Calendar, Menu } from "lucide-react";
 import { NavLink } from "react-router";
 import { useState } from "react";
 
 const sidebarLinks = [
-  {
-    to: "/candidate/dashboard",
-    label: "Dashboard",
-    icon: <LayoutDashboard size={18} />,
-  },
+  // {
+  //   to: "/candidate/dashboard",
+  //   label: "Dashboard",
+  //   icon: <LayoutDashboard size={18} />,
+  // },
   { to: "/candidate/profile", label: "My Profile", icon: <User size={18} /> },
   {
     to: "/candidate/received-invitations",
@@ -27,11 +20,6 @@ const sidebarLinks = [
     to: "/candidate/interviews",
     label: "Interviews",
     icon: <Calendar size={18} />,
-  },
-  {
-    to: "/candidate/settings",
-    label: "Settings",
-    icon: <Settings size={18} />,
   },
 ];
 

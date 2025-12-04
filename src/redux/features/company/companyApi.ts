@@ -17,7 +17,15 @@ export const companyApi = baseApi.injectEndpoints({
         body: credentials,
       }),
     }),
+
+    getCompanyProfile: builder.query<any, void>({
+      query: () => ({
+        url: "/companies/me",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useCreateCompanyProfileMutation } = companyApi;
+export const { useCreateCompanyProfileMutation, useGetCompanyProfileQuery } =
+  companyApi;

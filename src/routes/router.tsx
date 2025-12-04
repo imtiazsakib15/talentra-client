@@ -15,6 +15,8 @@ import SentInvitations from "@/pages/company-dashboard/SentInvitations";
 import CandidateDashboardLayout from "@/layout/CandidateDashboardLayout";
 import MyProfile from "@/pages/candidate-dashboard/MyProfile";
 import ReceivedInvitations from "@/pages/candidate-dashboard/ReceivedInvitations";
+import ScheduledInterviews from "@/pages/candidate-dashboard/ScheduledInterviews";
+import CompanyProfilePage from "@/pages/company-dashboard/CompanyProfilePage";
 
 export const router = createBrowserRouter([
   {
@@ -49,10 +51,11 @@ export const router = createBrowserRouter([
     element: <CompanyDashboardLayout />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: "dashboard",
-        element: <CompanyDashboard />,
-      },
+      // {
+      //   path: "dashboard",
+      //   element: <CompanyDashboard />,
+      // },
+      { path: "profile", element: <CompanyProfilePage /> },
       {
         path: "search-candidates",
         element: <CandidateSearch />,
@@ -74,7 +77,7 @@ export const router = createBrowserRouter([
       // { index: true, element: <CandidateDashboard /> },
       { path: "profile", element: <MyProfile /> },
       { path: "received-invitations", element: <ReceivedInvitations /> },
-      // { path: "interviews", element: <CandidateInterviews /> },
+      { path: "interviews", element: <ScheduledInterviews /> },
       // { path: "settings", element: <CandidateSettings /> },
     ],
   },
