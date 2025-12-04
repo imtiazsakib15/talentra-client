@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { User, Mail, Calendar, Menu } from "lucide-react";
 import { NavLink } from "react-router";
 import { useState } from "react";
-import LogOutButton from "@/components/shared/LogOutButton";
+import DashboardAsideFooter from "@/components/shared/DashboardAsideFooter";
 
 const sidebarLinks = [
   // {
@@ -71,13 +71,11 @@ export default function CandidateDashboardLayout() {
         </nav>
 
         {/* Footer */}
-        <div className="p-4 border-t border-slate-200">
-          <LogOutButton />
-        </div>
+        <DashboardAsideFooter />
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 p-6">
+      <main className="flex-1 p-6 overflow-y-auto">
         <Outlet />
       </main>
     </div>

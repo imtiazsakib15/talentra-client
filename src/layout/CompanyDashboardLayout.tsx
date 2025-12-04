@@ -2,7 +2,7 @@ import { Outlet } from "react-router";
 import { Menu, Users, Send, User } from "lucide-react";
 import { useState } from "react";
 import SideLink from "@/components/company-dashboard/SideLink";
-import LogOutButton from "@/components/shared/LogOutButton";
+import DashboardAsideFooter from "@/components/shared/DashboardAsideFooter";
 
 export default function CompanyDashboardLayout() {
   const [open, setOpen] = useState(true);
@@ -60,9 +60,7 @@ export default function CompanyDashboardLayout() {
         </nav>
 
         {/* Footer */}
-        <div className="p-4 border-t border-slate-200">
-          <LogOutButton />
-        </div>
+        <DashboardAsideFooter />
       </aside>
 
       {/* Main Content */}
