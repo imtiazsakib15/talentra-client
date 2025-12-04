@@ -20,8 +20,7 @@ export function SendInvitationModal({ candidateId }: { candidateId: string }) {
   const user = useAppSelector(selectCurrentUser);
   const [message, setMessage] = useState("");
 
-  const [sendInvitation, { isLoading, error }] = useSendInvitationMutation();
-  console.log(error);
+  const [sendInvitation, { isLoading }] = useSendInvitationMutation();
   const handleSend = async () => {
     if (message.trim().length < 10) {
       toast.error("Message must be at least 10 characters.");
@@ -34,7 +33,6 @@ export function SendInvitationModal({ candidateId }: { candidateId: string }) {
         companyId: user!.companyId!,
         message,
       }).unwrap();
-      console.log(result);
       if (result.success) {
         toast.success("Invitation sent successfully!");
         setMessage("");

@@ -18,8 +18,16 @@ export const interviewApi = baseApi.injectEndpoints({
         body,
       }),
     }),
+
+    getCandidateInterviews: builder.query({
+      query: () => ({
+        url: "/interviews/candidate",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useScheduleInterviewMutation } = interviewApi;
+export const { useScheduleInterviewMutation, useGetCandidateInterviewsQuery } =
+  interviewApi;
 export default interviewApi;

@@ -53,9 +53,7 @@ const CandidateCard = ({ candidate }: { candidate: TCandidate }) => {
         {/* View Profile Button */}
         <div className="pt-2">
           <Button asChild className="w-full text-white rounded-xl">
-            <Link to={`/company/dashboard/candidates/${candidate.id}`}>
-              View Profile
-            </Link>
+            <Link to={`/company/candidates/${candidate.id}`}>View Profile</Link>
           </Button>
         </div>
       </CardContent>
