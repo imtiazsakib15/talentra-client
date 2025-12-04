@@ -44,7 +44,7 @@ export default function CandidateDashboardLayout() {
           </h1>
           <button
             onClick={() => setOpen(!open)}
-            className="p-2 rounded-lg hover:bg-slate-100"
+            className="p-2 rounded-lg hover:bg-slate-100 z-10"
           >
             <Menu className="w-5 h-5 text-slate-700" />
           </button>

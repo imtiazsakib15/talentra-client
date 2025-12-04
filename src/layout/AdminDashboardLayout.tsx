@@ -1,9 +1,16 @@
 import { Outlet } from "react-router";
-import { Menu, Users, LogOut, Send, User } from "lucide-react";
+import {
+  Menu,
+  Users,
+  Building2,
+  LogOut,
+  UserCog,
+  ShieldCheck,
+} from "lucide-react";
 import { useState } from "react";
 import SideLink from "@/components/company-dashboard/SideLink";
 
-export default function CompanyDashboardLayout() {
+export default function AdminDashboardLayout() {
   const [open, setOpen] = useState(true);
 
   return (
@@ -20,8 +27,9 @@ export default function CompanyDashboardLayout() {
               !open && "opacity-0 w-0"
             }`}
           >
-            Company Panel
+            Admin Panel
           </h1>
+
           <button
             onClick={() => setOpen(!open)}
             className="p-2 rounded-lg hover:bg-slate-100 z-10"
@@ -30,30 +38,33 @@ export default function CompanyDashboardLayout() {
           </button>
         </div>
 
-        {/* Nav Items */}
+        {/* Navigation */}
         <nav className="flex-1 p-4 space-y-2">
-          {/* <SideLink
-            to="/company/dashboard"
-            icon={<Building2 />}
-            label="Overview"
-            open={open}
-          /> */}
           <SideLink
-            to="/company/profile"
-            icon={<User />}
-            label="Company Profile"
+            to="/admin/profile"
+            icon={<UserCog />}
+            label="Admin Profile"
             open={open}
           />
+
           <SideLink
-            to="/company/search-candidates"
+            to="/admin/manage-users"
             icon={<Users />}
-            label="Find Candidates"
+            label="Manage Users"
             open={open}
           />
+
           <SideLink
-            to="/company/sent-invitations"
-            icon={<Send />}
-            label="Sent Invitations"
+            to="/admin/manage-companies"
+            icon={<Building2 />}
+            label="Manage Companies"
+            open={open}
+          />
+
+          <SideLink
+            to="/admin/system-logs"
+            icon={<ShieldCheck />}
+            label="System Logs"
             open={open}
           />
         </nav>
