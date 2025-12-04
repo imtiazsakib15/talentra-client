@@ -1,12 +1,5 @@
 import { Outlet } from "react-router";
-import {
-  Menu,
-  Users,
-  Building2,
-  LogOut,
-  UserCog,
-  ShieldCheck,
-} from "lucide-react";
+import { Menu, Users, LogOut, SparkleIcon } from "lucide-react";
 import { useState } from "react";
 import SideLink from "@/components/company-dashboard/SideLink";
 
@@ -41,30 +34,15 @@ export default function AdminDashboardLayout() {
         {/* Navigation */}
         <nav className="flex-1 p-4 space-y-2">
           <SideLink
-            to="/admin/profile"
-            icon={<UserCog />}
-            label="Admin Profile"
-            open={open}
-          />
-
-          <SideLink
             to="/admin/manage-users"
             icon={<Users />}
             label="Manage Users"
             open={open}
           />
-
           <SideLink
-            to="/admin/manage-companies"
-            icon={<Building2 />}
-            label="Manage Companies"
-            open={open}
-          />
-
-          <SideLink
-            to="/admin/system-logs"
-            icon={<ShieldCheck />}
-            label="System Logs"
+            to="/admin/manage-skills"
+            icon={<SparkleIcon />}
+            label="Manage Skills"
             open={open}
           />
         </nav>
