@@ -1,5 +1,5 @@
 import Logo from "@/components/logo";
-import NotificationMenu from "@/components/notification-menu";
+// import NotificationMenu from "@/components/notification-menu";
 import UserMenu from "@/components/user-menu";
 import { Button } from "@/components/ui/button";
 import {
@@ -100,7 +100,7 @@ export default function Navbar() {
             </NavigationMenu>
 
             {/* Notification */}
-            <NotificationMenu />
+            {/* <NotificationMenu /> */}
           </div>
           {/* User menu */}
           <UserMenu />

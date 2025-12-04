@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { User, Mail, Calendar, Menu } from "lucide-react";
 import { NavLink } from "react-router";
 import { useState } from "react";
+import LogOutButton from "@/components/shared/LogOutButton";
 
 const sidebarLinks = [
   // {
@@ -68,6 +69,11 @@ export default function CandidateDashboardLayout() {
             </NavLink>
           ))}
         </nav>
+
+        {/* Footer */}
+        <div className="p-4 border-t border-slate-200">
+          <LogOutButton />
+        </div>
       </aside>
 
       {/* Main content */}

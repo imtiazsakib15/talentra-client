@@ -1,6 +1,4 @@
-import { LogOutIcon } from "lucide-react";
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,40 +8,39 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import avatar from "@/assets/avatar.jfif";
+import { useAppSelector } from "@/redux/hooks";
+import { selectCurrentUser } from "@/redux/features/auth/authSlice";
+import LogOutButton from "./shared/LogOutButton";
 
 export default function UserMenu() {
-  const name = "John Doe";
-  const email = "john.doe@example.com";
+  const user = useAppSelector(selectCurrentUser);
 
-  const avaterFallback = name
-    .split(" ")
-    .map((word) => word[0])
-    .join("");
+  if (!user) return null;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="h-auto p-0 hover:bg-transparent">
           <Avatar>
-            <AvatarImage src="./avatar.jpg" alt="Profile image" />
-            <AvatarFallback>{avaterFallback}</AvatarFallback>
+            <AvatarImage
+              className="object-cover"
+              src={avatar}
+              alt="Profile image"
+            />
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="max-w-64" align="end">
         <DropdownMenuLabel className="flex min-w-0 flex-col">
-          <span className="text-foreground truncate text-sm font-medium">
-            {name}
-          </span>
           <span className="text-muted-foreground truncate text-xs font-normal">
-            {email}
+            {user?.email}
           </span>
         </DropdownMenuLabel>
 
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LogOutIcon size={16} className="opacity-60" aria-hidden="true" />
-          <span>Logout</span>
+          <LogOutButton />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

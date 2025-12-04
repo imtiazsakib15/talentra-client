@@ -1,7 +1,8 @@
 import { Outlet } from "react-router";
-import { Menu, Users, LogOut, SparkleIcon } from "lucide-react";
+import { Menu, Users, SparkleIcon } from "lucide-react";
 import { useState } from "react";
 import SideLink from "@/components/company-dashboard/SideLink";
+import LogOutButton from "@/components/shared/LogOutButton";
 
 export default function AdminDashboardLayout() {
   const [open, setOpen] = useState(true);
@@ -49,7 +50,7 @@ export default function AdminDashboardLayout() {
 
         {/* Footer */}
         <div className="p-4 border-t border-slate-200">
-          <SideLink to="/logout" icon={<LogOut />} label="Logout" open={open} />
+          <LogOutButton />
         </div>
       </aside>
 
