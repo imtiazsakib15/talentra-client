@@ -20,6 +20,7 @@ import CompanyProfilePage from "@/pages/company-dashboard/CompanyProfilePage";
 import AdminDashboardLayout from "@/layout/AdminDashboardLayout";
 import ManageUsers from "@/pages/admin-dashboard/ManageUsers";
 import ManageSkillsPage from "@/pages/admin-dashboard/ManageSkillsPage";
+import AdminRoute from "@/components/AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -85,7 +86,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <AdminDashboardLayout />,
+    element: (
+      <AdminRoute>
+        <AdminDashboardLayout />
+      </AdminRoute>
+    ),
     children: [
       { path: "manage-users", element: <ManageUsers /> },
       { path: "manage-skills", element: <ManageSkillsPage /> },
