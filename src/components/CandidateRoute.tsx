@@ -4,13 +4,13 @@ import type { ReactNode } from "react";
 import { logout, selectCurrentUser } from "@/redux/features/auth/authSlice";
 import { USER_ROLE } from "@/constants/user.constant";
 
-const AdminRoute = ({ children }: { children: ReactNode }) => {
+const CandidateRoute = ({ children }: { children: ReactNode }) => {
   const user = useAppSelector(selectCurrentUser);
   const dispatch = useAppDispatch();
 
   if (!user) return <Navigate to="/login" replace />;
 
-  if (user?.role !== USER_ROLE.ADMIN) {
+  if (user?.role !== USER_ROLE.CANDIDATE) {
     dispatch(logout());
     return <Navigate to="/login" replace />;
   }
@@ -18,4 +18,4 @@ const AdminRoute = ({ children }: { children: ReactNode }) => {
   return children;
 };
 
-export default AdminRoute;
+export default CandidateRoute;
