@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import { cn } from "@/lib/utils";
-import { LayoutDashboard, User, Mail, Calendar, Menu } from "lucide-react";
+import { User, Mail, Calendar, Menu } from "lucide-react";
 import { NavLink } from "react-router";
 import { useState } from "react";
 

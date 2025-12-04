@@ -63,7 +63,7 @@ const SentInvitations = () => {
   }
 
   const invitations: TInvitation[] = data?.data || [];
-
+  console.log(invitations);
   const filteredInvitations =
     statusFilter === "ALL"
       ? invitations
@@ -163,17 +163,17 @@ const SentInvitations = () => {
                           <TableCell>
                             <div className="flex items-center gap-3">
                               <img
-                                src={item.candidate.image}
+                                src={item?.candidate?.image}
                                 alt=""
                                 className="h-10 w-10 rounded-full object-cover border"
                               />
 
                               <div className="max-w-40">
                                 <p className="font-medium text-slate-900 line-clamp-1">
-                                  {item.candidate.fullName}
+                                  {item?.candidate?.fullName}
                                 </p>
                                 <p className="text-xs text-slate-500">
-                                  {item.candidate.designation}
+                                  {item?.candidate?.designation}
                                 </p>
                               </div>
                             </div>
@@ -206,7 +206,7 @@ const SentInvitations = () => {
                               size="sm"
                               className="flex items-center gap-1"
                               onClick={() =>
-                                window.open(item.candidate.resume, "_blank")
+                                window.open(item?.candidate?.resume, "_blank")
                               }
                             >
                               View Resume
@@ -215,7 +215,7 @@ const SentInvitations = () => {
 
                           {/* Interview column */}
                           <TableCell>
-                            {item.status === "ACCEPTED" ? (
+                            {item.status === "ACCEPTED" && !item.interview ? (
                               <Button
                                 size="sm"
                                 className="bg-indigo-600 text-white hover:bg-indigo-700"
@@ -223,6 +223,12 @@ const SentInvitations = () => {
                               >
                                 Schedule Interview
                               </Button>
+                            ) : item.interview ? (
+                              <div className="text-sm text-slate-700 font-medium">
+                                {new Date(
+                                  item?.interview?.scheduledAt
+                                )?.toLocaleString()}
+                              </div>
                             ) : (
                               <span className="text-slate-400 text-sm">—</span>
                             )}
@@ -293,7 +299,7 @@ const SentInvitations = () => {
                 {selectedInvitation && (
                   <div className="text-sm text-slate-600">
                     Scheduling for:{" "}
-                    <strong>{selectedInvitation.candidate.fullName}</strong>
+                    <strong>{selectedInvitation?.candidate?.fullName}</strong>
                   </div>
                 )}
               </div>

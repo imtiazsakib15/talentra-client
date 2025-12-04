@@ -67,9 +67,9 @@ const MyProfile = () => {
             </div>
           </div>
 
-          <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
+          {/* <Button className="bg-indigo-600 hover:bg-indigo-700 text-white">
             Edit Profile
-          </Button>
+          </Button> */}
         </CardContent>
       </Card>
 

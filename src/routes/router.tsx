@@ -8,7 +8,7 @@ import ErrorPage from "@/pages/ErrorPage";
 import CompanyProfile from "@/pages/complete-profile/CompanyProfile";
 import CandidateProfile from "@/pages/complete-profile/CandidateProfile";
 import CompanyDashboardLayout from "@/layout/CompanyDashboardLayout";
-import CompanyDashboard from "@/pages/company-dashboard/CompanyDashboard";
+// import CompanyDashboard from "@/pages/company-dashboard/CompanyDashboard";
 import CandidateSearch from "@/pages/company-dashboard/SearchCandidate";
 import CandidateDetails from "@/pages/company-dashboard/CandidateDetails";
 import SentInvitations from "@/pages/company-dashboard/SentInvitations";

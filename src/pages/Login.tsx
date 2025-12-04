@@ -32,7 +32,7 @@ const Login = () => {
         );
         const role = result.data?.user?.role;
         if (role === "CANDIDATE") navigate("/candidate/profile");
-        if (role === "COMPANY") navigate("/company/profile");
+        else if (role === "COMPANY") navigate("/company/profile");
       } else {
         toast.error("Login failed", { id: toastId });
       }
