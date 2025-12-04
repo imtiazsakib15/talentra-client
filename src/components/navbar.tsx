@@ -13,11 +13,37 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { NAV_LINKS } from "@/constants/navLinks.constant";
+// import { NAV_LINKS } from "@/constants/navLinks.constant";
 import Container from "./Container";
 import { Link } from "react-router";
+import { useAppSelector } from "@/redux/hooks";
+import { selectCurrentUser } from "@/redux/features/auth/authSlice";
+import { USER_ROLE } from "@/constants/user.constant";
 
 export default function Navbar() {
+  const user = useAppSelector(selectCurrentUser);
+  type TNavLink = {
+    label: string;
+    path: string;
+  };
+
+  const NAV_LINKS: TNavLink[] = [{ label: "Home", path: "/" }];
+  if (user && user.role) {
+    NAV_LINKS.push({
+      label: "Dashboard",
+      path:
+        user.role === USER_ROLE.CANDIDATE
+          ? "/candidate/profile"
+          : user.role === USER_ROLE.COMPANY
+          ? "/company/profile"
+          : user.role === USER_ROLE.ADMIN
+          ? "/admin/manage-users"
+          : "/",
+    });
+  } else {
+    NAV_LINKS.push({ label: "Login", path: "/login" });
+    NAV_LINKS.push({ label: "Register", path: "/register" });
+  }
   return (
     <header className="border-b px-4 md:px-6">
       <Container className="flex h-16 items-center justify-between gap-4">
