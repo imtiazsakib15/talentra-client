@@ -22,6 +22,7 @@ import ManageUsers from "@/pages/admin-dashboard/ManageUsers";
 import ManageSkillsPage from "@/pages/admin-dashboard/ManageSkillsPage";
 import AdminRoute from "@/components/AdminRoute";
 import CandidateRoute from "@/components/CandidateRoute";
+import CompanyRoute from "@/components/CompanyRoute";
 
 export const router = createBrowserRouter([
   {
@@ -53,7 +54,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/company",
-    element: <CompanyDashboardLayout />,
+    element: (
+      <CompanyRoute>
+        <CompanyDashboardLayout />
+      </CompanyRoute>
+    ),
     errorElement: <ErrorPage />,
     children: [
       // {
