@@ -5,3 +5,4 @@ export * from "./candidate.type";
 export * from "./company.type";
 export * from "./invitation.type";
 export * from "./interview.type";
+export * from "./user.type";

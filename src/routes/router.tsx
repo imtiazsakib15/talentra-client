@@ -18,6 +18,7 @@ import ReceivedInvitations from "@/pages/candidate-dashboard/ReceivedInvitations
 import ScheduledInterviews from "@/pages/candidate-dashboard/ScheduledInterviews";
 import CompanyProfilePage from "@/pages/company-dashboard/CompanyProfilePage";
 import AdminDashboardLayout from "@/layout/AdminDashboardLayout";
+import ManageUsers from "@/pages/admin-dashboard/ManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -84,7 +85,7 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     element: <AdminDashboardLayout />,
-    children: [],
+    children: [{ path: "manage-users", element: <ManageUsers /> }],
   },
 
   {
