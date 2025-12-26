@@ -20,9 +20,8 @@ import CompanyProfilePage from "@/pages/company-dashboard/CompanyProfilePage";
 import AdminDashboardLayout from "@/layout/AdminDashboardLayout";
 import ManageUsers from "@/pages/admin-dashboard/ManageUsers";
 import ManageSkillsPage from "@/pages/admin-dashboard/ManageSkillsPage";
-import AdminRoute from "@/components/AdminRoute";
-import CandidateRoute from "@/components/CandidateRoute";
-import CompanyRoute from "@/components/CompanyRoute";
+import PrivateRoute from "@/components/PrivateRoute";
+import { USER_ROLE } from "@/constants/user.constant";
 
 export const router = createBrowserRouter([
   {
@@ -55,9 +54,9 @@ export const router = createBrowserRouter([
   {
     path: "/company",
     element: (
-      <CompanyRoute>
+      <PrivateRoute role={USER_ROLE.COMPANY}>
         <CompanyDashboardLayout />
-      </CompanyRoute>
+      </PrivateRoute>
     ),
     errorElement: <ErrorPage />,
     children: [
@@ -83,9 +82,9 @@ export const router = createBrowserRouter([
   {
     path: "/candidate",
     element: (
-      <CandidateRoute>
+      <PrivateRoute role={USER_ROLE.CANDIDATE}>
         <CandidateDashboardLayout />
-      </CandidateRoute>
+      </PrivateRoute>
     ),
     children: [
       // { index: true, element: <CandidateDashboard /> },
@@ -97,9 +96,9 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <AdminRoute>
+      <PrivateRoute role={USER_ROLE.ADMIN}>
         <AdminDashboardLayout />
-      </AdminRoute>
+      </PrivateRoute>
     ),
     children: [
       { path: "manage-users", element: <ManageUsers /> },
